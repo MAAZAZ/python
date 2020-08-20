@@ -1,0 +1,6 @@
+{
+    "python.linting.mypyEnabled": true,
+    "python.linting.enabled": false,
+    "code-runner.runInTerminal": true,
+    "git.ignoreLimitWarning": true
+}
