@@ -1,6 +1,9 @@
 import math;
-
 from collections import deque
+from array import array
+from sys import getsizeof
+from pprint import pprint
+from timeit import timeit
 
 print('*'*5)
 
@@ -260,5 +263,253 @@ print(queue)
 
 ############"
 
+#typle
+x=1,2
+y=(2,2)
+z=x+y
+print(type(x))
+print(z)
+
+ttt=tuple("hello world")
+print(ttt)
+
+############
+#swapping
+x,y=1,2
+x,y=y,x
+print(x,y)
+
+########
+
+f=array("i",[1,2,3,4])
+f.append(5)
+print(f[-1])
+
+#######
+
+kkk=set(number)
+hk=1
+kkk.add(hk)
+jj={10,5}
+print(kkk| jj)
+print(kkk & jj)
+print(kkk - jj)
+print(kkk ^ jj)
+
+print(list(kkk)[0])
+
+###########
+#dictionary
+
+dic={1:(1,1),"b":(1,2)}
+print(list(dic["b"]))
+
+d=dict(a=1,b=2)
+print(d.get("a5",0))
+
+del d["a"]
+print(d)
+
+d["c"]=50
+
+print(d)
+# items() # values() # keys()
+for key,x in d.items():
+    print(key,x)
+
+##########
+
+# dict comprehension
+listt=[x*2 for x in range(5)]
+print(listt)
+
+## expr generator
+listt=((x,x*2) for x in range(1000))
+print(listt)
+#for x in listt:
+ #   print(x)
+
+print(getsizeof(listt))
+
+listt2=[(x,x*2) for x in range(1000)]
+print(getsizeof(listt2))
+
+##############
+
+num=[1,2,3,4,5,6,7,8,9]
+print(*num)
+
+## équivalent
+num2=list(range(5))
+num3=[*range(5), *"hello"]
+print(num3)
+#########
+first=[1]
+second=[2,3]
+
+third=[*first,*second] ## third=first+second
+print(third)
+
+dic1={"a":1}
+dic2=dict(b=2, c=3)
+dic3={**dic1,**dic2}
+print(dic1.items())
+print(dic3.items())
+
+##########"
+
+sentenceOr="This is a common interview question"
+
+def countable(sentence):
+    dic={}
+    for i in sentence:
+        if i in dic:
+            dic[i]+=1
+        else:
+            dic[i]=1
+    ##del dic[" "] ## eviter les espaces
+    #pprint(dic,width=1)
+    list=sorted(dic.items(),key=lambda item:item[1],reverse=True)
+    #print(list)
+    return list[0][0]
+    #other solution
+    #for i,j in dic.items():
+     #   if j==max(dic.values()):
+      #      return i
+
+print(countable(sentenceOr))
+###########################
+## exceptions
+
+number=[1,2,3]
+try:
+    print("start")
+    with open("first.py") as file:
+        print("open file")
+   # print(number[3])
+    x=10/0
+except (ValueError,ZeroDivisionError) as err:
+    print("problem")
+else:
+    print("finish")
+finally:
+    print("ok")
+################
+code1="""
+def divise(num):
+    if num==0:
+        raise Exception("must not equal 0")
+    return 10/num
+
+try:
+    print(divise(0))
+except Exception as x:
+    print(x)
+"""
+
+code2="""
+def divise(num):
+    if num==0:
+       return None
+    return 10/num
+
+x=divise(0)
+if x==None:
+    pass
+"""
+#print("firstcode:", timeit(code1, number=1000))
+#print("secondcode:",timeit( code2, number=1000))
+
+## taking twice before using Handler error (raise) because it takes a lot of time
+
+###################"
+
+class Point:
+    i="test"
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+    
+    def __str__(self):
+        return f'({self.x},{self.y})'
+
+    @classmethod
+    def zero(cls):
+        return Point(0,0)
+
+    def draw(self):
+        print(f"({self.x},{self.y})")
+    
+    def __eq__(self, value):
+        return self.x==value.x and self.y==self.y
+
+    def __add__(self,value):
+        p=self.zero()
+        p.x=self.x+value.x
+        p.y=self.y+value.y
+        return p
+    
+point= Point(1,2)
+point.draw()
+
+#print(isinstance(point, Point))
+
+#s:int=15
+#s="maazaz"
+#print(s)
+
+t=Point.i
+t=point.i
+#print(t)
+#STATIC
+Point.i="zakaria"
+#not static
+point.i="maazaz"
+print(Point.i)
+print(point.i)
+
+p=Point.zero()
+point=Point.zero()
+p.draw()
+
+print(str(p))
+
+print(p==point)
+p.x=2
+
+k=p+point
+k.draw()
+
+#################
+
+class Tag:
+    def __init__(self):
+        self.__dic=dict()
+
+    @property
+    def dic(self):
+        return self.__dic
+    
+    @dic.setter
+    def dic(self):
+        return self.__dic
+
+    def __getitem__(self,val):
+        return self.__dic.get(val.lower(),0)
+
+    def __setitem__(self,val,val2):
+        self.__dic[val.lower()]=val2
+
+    #dic=property(getDic,setDic)
+
+tag=Tag()
+tag["python"]=1
+tag["python"]=2
+print(tag["pythons"])
+print(tag.__dict__)
+tag._Tag__dic['python']=3
+print(tag._Tag__dic['python'])
+###############""
+print(tag.dic)
 
 
