@@ -590,3 +590,64 @@ print(type(json.loads(x)))
 
 #############
 
+import sqlite3
+
+x=json.loads(x)
+
+with sqlite3.connect("db.sqlite3") as conn:
+    req="insert into clients values(?,?)"
+    for i in x:
+        print(tuple(i.values()))
+        #conn.execute(req,tuple(i.values()))
+    print({'id':3,'name':'walid maazaz'}.values())
+    #conn.execute(req,tuple(([4, 'ziko maazaz'])))
+    conn.commit()
+ 
+#################"""
+
+with sqlite3.connect("db.sqlite3") as conn:
+    req="select * from clients"
+    f=conn.execute(req)
+    for i in f:
+        print(i[1])
+
+#############""
+
+from datetime import datetime, timedelta
+
+dt1=datetime(2020,1,1)+timedelta(1)
+print(dt1)
+dt2=datetime.now()
+
+duree=dt2-dt1
+
+print(duree.days)
+print(duree.seconds)
+print(duree.total_seconds())
+
+#########
+
+import random
+
+x=random.random()
+x=random.randint(1,10)
+x=random.choice([1,0,2])
+x=random.choices([1,0,2],k=2)
+x=",".join(random.choices("maazaz",k=4))
+print(x)
+
+num=[1,2,3,4]
+random.shuffle(num)
+print(num)
+
+##############
+
+import webbrowser
+
+webbrowser.open("http://google.com")
+
+#############
+
+
+
+
