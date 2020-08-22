@@ -1,5 +1,5 @@
 import math;
-from collections import deque
+from collections import deque, namedtuple
 from array import array
 from sys import getsizeof
 from pprint import pprint
@@ -512,4 +512,81 @@ print(tag._Tag__dic['python'])
 ###############""
 print(tag.dic)
 
+
+class humain:
+    def __init__(self):
+        self.age=18
+
+    def draw(self):
+        print(self.age)
+
+class parent:
+    def __init__(self):
+        self.ismarried=true
+
+    def draw(self):
+        print(self.ismarried)
+
+class solder(humain, parent):
+    def __init__(self):
+        super().__init__()
+        self.damage=50
+
+soldr=solder()
+print(soldr.age)
+print(soldr.damage)
+#print(soldr.ismarried)
+soldr.draw()
+
+###################"
+
+from pathlib import Path
+
+print(Path().home())
+path=Path("PythonProjet/first.py")
+print(path.exists())
+print(path.is_file())
+print(path.is_dir())
+print(path.name)
+print(path.stem)
+print(path.suffix)
+print(path.parent)
+
+#print("time: ",ctime(path.stat().st_ctime))
+#print(path.read_bytes())
+
+path2=path.with_name("file.txt")
+path2=path.with_suffix(".txt")
+print(path2.absolute())
+
+path=Path(r"C:\Users\MAAZAZ\Desktop\PythonProjet")
+for x in path.iterdir():
+    print(x)
+
+ss=[x for x in path.rglob("*.py")]
+print(ss)
+
+#####################""
+
+path =Path() / "first.py"
+print(path) 
+
+#############"
+
+import json
+
+dicc=[{'id':1,'name':'maazaz zakaria'},{'id':2, 'name':'dsdfds'}]
+
+w=json.dumps(dicc)
+print(w)
+
+Path('client.json').write_text(w)
+
+x=Path('client.json').read_text()
+
+print(type(x))
+
+print(type(json.loads(x)))
+
+#############
 
